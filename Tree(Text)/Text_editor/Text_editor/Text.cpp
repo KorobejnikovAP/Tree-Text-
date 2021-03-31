@@ -17,7 +17,8 @@ inline void print(ostream& o, Link* root, Link* curr, int lvl) {
 inline void FreeTree(Link*& root) {
 	if (root->next)  FreeTree(root->next);
 	if (root->down)  FreeTree(root->down);
-	
+
+	delete root;
 	root = nullptr;
 }
 
@@ -82,20 +83,20 @@ void Text::delCurr()
 		curr = root;
 	}
 	else {
-		Link* tmp = root;
-		TLR(tmp, curr);
+		Link* tmp = way.top();
 		if (tmp->next == curr) {
 			tmp->next = curr->next;
 			curr->next = nullptr;
 			FreeTree(curr);
 			curr = tmp;
+			way.pop();
 		}
 		else {
 			tmp->down = curr->next;
 			curr->next = nullptr;
 			FreeTree(curr);
 			curr = tmp;
+			way.pop();
 		}
 	}
-
 }
