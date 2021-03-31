@@ -15,34 +15,6 @@ public:
 		                                                            , down(_down) {};
 };
 
-inline void TLR(Link*& curr, Link*& curr_next) {
-	if (curr->next == curr_next || curr->down == curr_next)
-		return;
-	TLR(curr->next, curr_next);
-	TLR(curr->down, curr_next);
-}
-
-inline void print(ostream& o, Link* root, Link* curr, int lvl) {
-	if (root == nullptr)
-		return;
-	if (root == curr)
-		o << '*';
-	else o << '|';
-
-	for (int i = 0; i < lvl; ++i)
-		o << "  ";
-	o << root->val << endl;
-	print(o, root->down, curr, lvl + 1);
-	print(o, root->next, curr, lvl);
-}
-
-inline void FreeTree(Link*& root) {
-	if (root->next)  FreeTree(root->next);
-	if (root->down)  FreeTree(root->down);
-	
-	root = nullptr;
-}
-
 class Text
 {
 	Link* root;
