@@ -15,6 +15,8 @@ public:
 		                                                            , down(_down) {};
 };
 
+
+
 class Text
 {
 	Link* root;
